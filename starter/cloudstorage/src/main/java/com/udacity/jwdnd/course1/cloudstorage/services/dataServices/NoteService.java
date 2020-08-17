@@ -21,7 +21,7 @@ public class NoteService {
     }
 
     public Note getNoteById(Long noteid){
-        return this.noteMapper.getNote(noteid);
+        return this.noteMapper.getNoteById(noteid);
     }
 
     public List<Note> getNotes(){
@@ -30,4 +30,7 @@ public class NoteService {
 
     public void deleteNote(Long noteid){ this.noteMapper.deleteNote(noteid); }
 
+    public void updateNote(Note note){ this.noteMapper.updateNote(note);}
+
+    public Note getNote(Note note) {return this.noteMapper.getNote(note);}
 }

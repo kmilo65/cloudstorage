@@ -1,10 +1,14 @@
 package com.udacity.jwdnd.course1.cloudstorage.controllers;
 
 import com.udacity.jwdnd.course1.cloudstorage.data.Note;
+import com.udacity.jwdnd.course1.cloudstorage.data.User;
+import com.udacity.jwdnd.course1.cloudstorage.services.UserService;
 import com.udacity.jwdnd.course1.cloudstorage.services.dataServices.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,37 +20,41 @@ public class NoteController {
     @Autowired
     private NoteService noteService;
 
-    //public NoteController(NoteService noteService) {this.noteService = noteService; }
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("/notes")
-    public String getHomeNotes(Model model) {
-        var notes= noteService.getNotes();
-        model.addAttribute("notes",notes );
-        return "home";
-    }
 
     @PostMapping("/notes")
-    public String addNote(@ModelAttribute("Note")  Note note, Model model) {
-        note.setUserid(Long.valueOf(2));
-        this.noteService.addNote(note);
-        model.addAttribute("notes",this.noteService.getNotes());
-        return "redirect:/home/notes";
+    public String addUpdateNote(@ModelAttribute("Note")  Note note, Authentication authentication, Model model) {
+
+        String username = authentication.getName();
+        Long userId = userService.getUser(username).getUserid();
+        note.setUserId(userId);
+
+        if(note.getNoteId()==null || note.getNoteId()==0) {
+            this.noteService.addNote(note);
+            model.addAttribute("notes", this.noteService.getNotes());
+
+        } else{
+
+            this.noteService.updateNote(note);
+        }
+            return "redirect:/";
     }
 
-    @GetMapping("/delete/{noteid}")
-    public String deleteNote(@PathVariable("noteid") Long noteid) {
-        //Note note = noteService.getNoteById(noteid);
-        //        .orElseThrow(() -> new IllegalArgumentException("Invalid note Id:" + noteid));
-        noteService.deleteNote(noteid);
-        return "home";
+    @GetMapping("/deleteNote/{noteId}")
+    public String deleteNote(@PathVariable("noteId") Long noteId) {
+        noteService.deleteNote(noteId);
+        return "redirect:/";
     }
 
-  //  @GetMapping("/edit/{id}")
-  //  public String showUpdateForm(@PathVariable("noteid") Integer noteid, Model model) {
-  //      Note note = noteService.getNoteById(noteid);
-  //      model.addAttribute("note", note);
-  //      return "home/note";
-  //  }
+     @GetMapping("/editNote/{noteId}")
+        public String showUpdateForm(Note note,  Model model) {
+           note=noteService.getNote(note);
+           model.addAttribute("note",note );
+
+         return "redirect:/notes";
+    }
 
 
 

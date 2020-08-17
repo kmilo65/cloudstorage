@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping
@@ -26,25 +23,28 @@ public class CredentialController {
     private UserService userService;
 
 
-    //public NoteController(NoteService noteService) {this.noteService = noteService; }
-
-    @GetMapping("/")
-    public String getHomeCredentials(Model model) {
-        var credentials=credentialService.getCredentials();
-        model.addAttribute("credentials", credentials );
-        return "home";
-    }
-
-
-    @PostMapping("/credential")
+    @PostMapping("/credentials")
     public String addCredential(@ModelAttribute("Credential") Credential credential, Authentication authentication, Model model) {
         var user=new User();
         user=userService.getUser(authentication.getName());
         credential.setUserId(user.getUserid());
-        this.credentialService.addCredential(credential);
-        credential.setUsername("");
-        model.addAttribute("credentials",this.credentialService.getCredentials());
-        return "redirect:/home";
+
+        if(credential.getCredentialId()==null ){
+
+            this.credentialService.addCredential(credential);
+            model.addAttribute("credentials",this.credentialService.getCredentials());
+        } else  {
+
+            this.credentialService.updateCredential(credential);
+        }
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/deleteCredential/{credentialId}")
+    public String deleteCredential(@PathVariable("credentialId") Long credentialId) {
+        credentialService.deleteCredential(credentialId);
+        return "redirect:/";
     }
 
 }

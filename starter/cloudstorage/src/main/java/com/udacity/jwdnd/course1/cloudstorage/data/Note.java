@@ -10,40 +10,29 @@ public class Note {
 
     public Note() {}
 
-    public Note(Long noteid, String notetitle, String notedescription, Long userid) {
-        this.noteId = noteid;
-        this.noteTitle = notetitle;
-        this.noteDescription = notedescription;
-        this.userId = userid;
-    }
-
-    public Long getNoteid() {
-        return noteId;
-    }
-
-    public String getNotetitle() {
-        return noteTitle;
-    }
-
-    public String getNotedescription() { return noteDescription; }
-
-    public Long getUserid(Long userId) {
-        return userId;
-    }
-
-    public void setNoteid(Long noteId) {
+    public Note(Long noteId, String notetitle, String noteDescription, Long userId) {
         this.noteId = noteId;
-    }
-
-    public void setNotetitle(String noteTitle) {
-        this.noteTitle = noteTitle;
-    }
-
-    public void setNotedescription(String noteDescription) {
+        this.noteTitle = notetitle;
         this.noteDescription = noteDescription;
-    }
-
-    public void setUserid(Long userId) {
         this.userId = userId;
     }
+
+    //gettes and settes
+
+    public Long getNoteId() {  return noteId; }
+
+    public void setNoteId(Long noteId) {  this.noteId = noteId; }
+
+    public String getNoteTitle() { return noteTitle; }
+
+    public void setNoteTitle(String noteTitle) { this.noteTitle = noteTitle; }
+
+    public String getNoteDescription() { return noteDescription; }
+
+    public void setNoteDescription(String noteDescription) { this.noteDescription = noteDescription; }
+
+    public Long getUserId() { return userId; }
+
+    public void setUserId(Long userId) { this.userId = userId; }
+
 }

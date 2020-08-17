@@ -12,11 +12,14 @@ public interface NoteMapper {
     List<Note> getAllNotes();
 
 
-    @Select("SELECT * FROM NOTES WHERE noteid = #{noteId}")
-    Note getNote(Long noteid);
+    @Select("SELECT * FROM NOTES WHERE noteId = #{noteId}")
+    Note getNoteById(Long noteId);
+
+    @Select("SELECT * FROM NOTES WHERE noteId = #{noteId}")
+    Note getNote(Note note);
 
 
-    @Insert("INSERT INTO NOTES (notetitle,notedescription,userid) VALUES(#{notetitle}, #{notedescription}, #{userId})")
+    @Insert("INSERT INTO NOTES (notetitle,notedescription,userid) VALUES(#{noteTitle}, #{noteDescription}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "noteId")
     int insertNote(Note note);
 

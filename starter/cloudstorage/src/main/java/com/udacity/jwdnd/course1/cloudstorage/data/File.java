@@ -2,69 +2,45 @@ package com.udacity.jwdnd.course1.cloudstorage.data;
 
 public class File {
 
-    private Integer fileId;
-    private String filename;
+    private Long fileId;
+    private String fileName;
     private String contenttype;
-    private String filesize;
-    private Integer userid;
+    private Long filesize;
+    private Long userId;
     private byte[] filedata;
 
     public File() {}
 
-    public File(Integer fileId, String filename, String contenttype, String filesize, Integer userid, byte[] filedata) {
-        this.fileId = fileId;
-        this.filename = filename;
+    public File(Long fileId, String fileName, String contenttype, Long filesize, Long userId, byte[] filedata) {
+        this.fileId=fileId;
+        this.fileName = fileName;
         this.contenttype = contenttype;
         this.filesize = filesize;
-        this.userid = userid;
+        this.userId = userId;
         this.filedata = filedata;
     }
 
-    public Integer getFileId() {
-        return fileId;
-    }
+    public Long getFileId() { return fileId; }
 
-    public String getFilename() {
-        return filename;
-    }
+    public String getFileName() { return fileName; }
 
-    public String getContenttype() {
-        return contenttype;
-    }
+    public String getContenttype() { return contenttype; }
 
-    public String getFilesize() {
-        return filesize;
-    }
+    public Long getFilesize() { return filesize; }
 
-    public Integer getUserid() {
-        return userid;
-    }
+    public Long getUserid() { return userId; }
 
-    public byte[] getFiledata() {
-        return filedata;
-    }
+    public byte[] getFiledata() { return filedata; }
 
-    public void setFileId(Integer fileId) {
-        this.fileId = fileId;
-    }
+    public void setFileId(Long fileId) { this.fileId = fileId; }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+    public void setFileName(String fileNameame) { this.fileName = fileName; }
 
-    public void setContenttype(String contenttype) {
-        this.contenttype = contenttype;
-    }
+    public void setContenttype(String contenttype) { this.contenttype = contenttype; }
 
-    public void setFilesize(String filesize) {
-        this.filesize = filesize;
-    }
+    public void setFilesize(Long filesize) { this.filesize = filesize; }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+    public void setUserid(Long userid) { this.userId = userId; }
 
-    public void setFiledata(byte[] filedata) {
-        this.filedata = filedata;
-    }
+    public void setFiledata(byte[] filedata) { this.filedata = filedata; }
 }
