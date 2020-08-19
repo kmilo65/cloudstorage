@@ -32,7 +32,7 @@ public class CredentialController {
         if(credential.getCredentialId()==null ){
 
             this.credentialService.addCredential(credential);
-            model.addAttribute("credentials",this.credentialService.getCredentials());
+            model.addAttribute("credentials",this.credentialService.getCredentials(user.getUserid()));
         } else  {
 
             this.credentialService.updateCredential(credential);

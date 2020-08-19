@@ -23,8 +23,8 @@ public class CredentialService {
     public void updateCredential(Credential credential){ this.credentialMapper.updateCredential(credential); }
 
 
-    public List<Credential> getCredentials(){
-        return this.credentialMapper.getCredentials();
+    public List<Credential> getCredentials(Long userId){
+        return this.credentialMapper.getCredentials(userId);
     }
 
     public void deleteCredential(Long credntialid){ this.credentialMapper.deleteCredential(credntialid);}

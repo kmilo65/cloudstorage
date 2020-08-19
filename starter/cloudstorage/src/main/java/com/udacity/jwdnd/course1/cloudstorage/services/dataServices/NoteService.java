@@ -13,6 +13,8 @@ public class NoteService {
     @Autowired
     private NoteMapper noteMapper;
 
+
+
     //public NoteService(NoteMapper noteMapper) { this.noteMapper = noteMapper; }
 
 
@@ -24,8 +26,8 @@ public class NoteService {
         return this.noteMapper.getNoteById(noteid);
     }
 
-    public List<Note> getNotes(){
-        return this.noteMapper.getAllNotes();
+    public List<Note> getNotes(Long userId){
+        return this.noteMapper.getAllNotes(userId);
     }
 
     public void deleteNote(Long noteid){ this.noteMapper.deleteNote(noteid); }

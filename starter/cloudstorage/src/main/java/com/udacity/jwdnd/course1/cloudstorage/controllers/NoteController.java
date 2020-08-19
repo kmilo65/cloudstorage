@@ -33,7 +33,7 @@ public class NoteController {
 
         if(note.getNoteId()==null || note.getNoteId()==0) {
             this.noteService.addNote(note);
-            model.addAttribute("notes", this.noteService.getNotes());
+            model.addAttribute("notes", this.noteService.getNotes(userId));
 
         } else{
 

@@ -9,8 +9,8 @@ import java.util.List;
 @Mapper
 public interface CredentialMapper {
 
-    @Select("SELECT * FROM CREDENTIALS")
-    List<Credential> getCredentials();
+    @Select("SELECT * FROM CREDENTIALS WHERE userId=#{userId}")
+    List<Credential> getCredentials(Long userId);
 
     @Select("SELECT * FROM CREDENTIALS WHERE credentialid = #{credentialId}")
     Credential getCredential(Long credentialId);

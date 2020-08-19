@@ -34,7 +34,7 @@ public class File {
 
     public void setFileId(Long fileId) { this.fileId = fileId; }
 
-    public void setFileName(String fileNameame) { this.fileName = fileName; }
+    public void setFileName(String fileName) { this.fileName = fileName; }
 
     public void setContenttype(String contenttype) { this.contenttype = contenttype; }
 

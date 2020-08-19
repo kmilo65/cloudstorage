@@ -13,6 +13,7 @@ public class FileService {
     @Autowired
     private FileMapper fileMapper;
 
+
     public File getFileUpload(Long fileId){ return fileMapper.getFile(fileId); }
 
     public void insertFile(File file){   fileMapper.insertFile(file); }
