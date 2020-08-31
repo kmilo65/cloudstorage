@@ -15,7 +15,10 @@ public class CredentialService {
     private CredentialMapper credentialMapper;
 
     public void addCredential(Credential credential){
+
+
         this.credentialMapper.insertCredential(credential);
+
     }
 
     public Credential getCredentialById(Long  credentialid){ return this. credentialMapper.getCredential(credentialid); }

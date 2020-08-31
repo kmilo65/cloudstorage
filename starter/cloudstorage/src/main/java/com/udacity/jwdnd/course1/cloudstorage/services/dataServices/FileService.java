@@ -21,4 +21,18 @@ public class FileService {
     public void deleteFile(Long fileId){ fileMapper.deleteFile(fileId);}
 
     public List<File> filesUpload(Long userId){ return fileMapper.getFilesByUserId(userId);  }
+
+    public File getFileByName(String fileName){return fileMapper.getFileByName(fileName);}
+
+    public Boolean fileExist(String fileName,Long userId){
+            Boolean exists=false;
+            List<File> files=filesUpload(userId);
+            for(int i=0;i<files.size();i++){
+                if(files.get(i).getFileName().equals(fileName)){
+                    exists=true;
+                }
+            }
+        return exists;
+    }
+
 }
