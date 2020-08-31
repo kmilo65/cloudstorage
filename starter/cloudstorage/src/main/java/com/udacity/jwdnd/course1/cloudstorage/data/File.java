@@ -40,7 +40,7 @@ public class File {
 
     public void setFilesize(Long filesize) { this.filesize = filesize; }
 
-    public void setUserid(Long userid) { this.userId = userId; }
+    public void setUserid(Long userId) { this.userId = userId; }
 
     public void setFiledata(byte[] filedata) { this.filedata = filedata; }
 }
