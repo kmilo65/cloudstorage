@@ -51,8 +51,8 @@
                                 <tbody>
                                 <tr th:each="file : ${files}">
                                     <td>
-                                        <a target="{file.fileName}" class="btn btn-success"  th:href="@{/file/view/{fileId}(fileId=${file.fileId})}">View</a>
-                                        <a  class="btn btn-danger" th:href="@{/deleteFile/(fileId=${file.fileId})}">Delete</a>
+                                        <a target="{file.fileName}" class="btn btn-success"  th:href="@{/download(fileName=${file.fileName})}">View</a>
+                                        <a  class="btn btn-danger" th:href="@{/deleteFile/{fileId}/(fileId=${file.fileId})}">Delete</a>
                                     </td>
                                     <th scope="row" th:text="${file.fileName}">ExampleFile.txt</th>
                                 </tr>
@@ -136,7 +136,7 @@
                                 <tbody>
                                 <tr  th:each="credential : ${credentials}">
                                     <td>
-                                        <button type="button" class="btn btn-success"  th:onclick="javascript: showCredentialModal([[${credential.credentialId}]],[[${credential.url}]],[[${credential.username}]],[[${credential.password}]])">Edit</button>
+                                        <button type="button" class="btn btn-success"  th:onclick="javascript: showCredentialModal([[${credential.credentialId}]],[[${credential.url}]],[[${credential.username}]],[[${encryptionService.decryptValue(credential.password,key)}]])">Edit</button>
                                         <a class="btn btn-danger"   th:href="@{/deleteCredential/{credentialId}(credentialId=${credential.credentialId})}">Delete</a>
                                     </td>
                                     <th scope="row"  th:text ="${credential.url}">Example Credential URL</th>
