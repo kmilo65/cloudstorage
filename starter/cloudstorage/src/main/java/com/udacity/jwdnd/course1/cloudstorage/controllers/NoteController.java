@@ -17,6 +17,12 @@ import java.util.List;
 @RequestMapping
 public class NoteController {
 
+
+    protected static final String SUCCESS_NOTE = "redirect:/result?note";
+    protected static final String   REDIRECT_DELETE = "redirect:/result?delete";
+    protected static final String REDIRECT_HOME="redirect:/";
+
+
     @Autowired
     private NoteService noteService;
 
@@ -39,13 +45,13 @@ public class NoteController {
 
             this.noteService.updateNote(note);
         }
-            return "redirect:/";
+            return  SUCCESS_NOTE;
     }
 
     @GetMapping("/deleteNote/{noteId}")
     public String deleteNote(@PathVariable("noteId") Long noteId) {
         noteService.deleteNote(noteId);
-        return "redirect:/";
+        return REDIRECT_DELETE;
     }
 
      @GetMapping("/editNote/{noteId}")
@@ -53,7 +59,7 @@ public class NoteController {
            note=noteService.getNote(note);
            model.addAttribute("note",note );
 
-         return "redirect:/notes";
+         return REDIRECT_HOME; /**"redirect:/";**/
     }
 
 
